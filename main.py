@@ -1,3 +1,16 @@
+import streamlit as st
+from langchain import PromptTemplate
+#from langchain.llms import OpenAI #so vananenud rida ning asendatud allolevaga
+from langchain_community.llms import OpenAI
+import os
+
+template = """
+ You are a marketing copywriter with 20 years of experience. You are analyzing customer's background to write personalized product description that only this customer will receive; 
+    PRODUCT input text: {content};
+    CUSTOMER age group (y): {agegroup};
+    CUSTOMER main Status: {Status};
+    TASK: Write a product description that is tailored into this customer's Age group and hobby. Use age group specific slang.;
+    FORMAT: Present the result in the following order: (PRODUCT DESCRIPTION), (BENEFITS), (USE CASE);
     PRODUCT DESCRIPTION: describe the product in 5 sentences;
     BENEFITS: describe in 3 sentences why this product is perfect considering customers age group and status;
     USE CASE: write a story in 5 sentences, of an example weekend activity taking into account status {status} and age {agegroup}, write a story in first person, example "I started my Saturday morning with ...";
